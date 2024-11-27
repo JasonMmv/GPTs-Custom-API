@@ -1,0 +1,43 @@
+openapi: 3.1.0
+info:
+  title: Google Sheets Email Data API
+  version: 1.0.0
+  description: Google Sheets에서 특정 키워드를 기준으로 이메일 데이터를 가져오는 API.응답 대기 시간이 최대 5초까지 걸릴 수 있습니다.
+servers:
+  - url: https://kq-lab.uc.r.appspot.com
+    description: Google Apps Script 실행 URL
+paths:
+  /data:
+    get:
+      operationId: fetchEmailData
+      // 고유 식별자 추가 "summary": Google Sheets에서 이메일 데이터 가져오기
+      description: Google Sheets에서 특정 키워드와 일치하는 이메일 데이터를 가져옵니다.
+      parameters: []
+      responses:
+        "200":
+          description: 키워드에 따라 검색된 이메일 데이터
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    date:
+                      type: string
+                      format: date-time
+                      description: 이메일이 수신된 날짜와 시간 (ISO 8601 형식)
+                    subject:
+                      type: string
+                      description: 이메일 제목 정보
+                    sender:
+                      type: string
+                      description: 이메일 발신자
+                    amount:
+                      type: number
+                      description: 거래 금액
+                  required:
+                    - date
+                    - subject
+                    - sender
+                    - amount
