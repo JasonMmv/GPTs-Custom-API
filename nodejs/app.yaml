@@ -1,0 +1,6 @@
+runtime: nodejs18 # Node.js 런타임 버전
+instance_class: F1 # (선택) 기본 인스턴스 유형
+
+# 환경 변수 설정 (서비스 계정 파일 경로)
+env_variables:
+  GOOGLE_APPLICATION_CREDENTIALS: "api-node-442418-14aa388060de.json.json"
